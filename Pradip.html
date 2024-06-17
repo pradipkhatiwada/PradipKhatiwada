@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> PRADIP KHATIWADA </title>
+<style>
+  body {
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5; /* Light Gray */
+  color: #333;
+}
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background: #4d6a61; /* Grayish Green */
+  color: #ffffff; /* White */
+  position: relative;
+  font-size: 14px;
+}
+header h1 {
+  align-items: baseline;
+  font-size: 2.25rem;
+  color: #ffffff; /* White */
+  text-shadow: 2px 2px 4px #000000;
+  transition: transform 0.3s ease;
+}
+header h1:hover {
+  transform: scale(1.1);
+}
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+nav li {
+  margin: 15px;
+}
+nav a {
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff; /* White */
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+}
+nav a:hover {
+  color: #5c8b7b; /* Grayed Jade */
+  background-color: #000000; /* Dark Olive Green */
+  border-radius: 5px;
+  transform: scale(1.1);
+}
+.tab {
+  display: none;
+}
+.about-content {
+  max-width: 90%;
+  margin: 10px auto;
+  padding: 0;
+  background-color: #ffffff; /* White */
+  box-shadow: 0 0 20px rgb(255, 255, 255);
+  border-radius: 20px;
+  border-left: 30px solid rgb(255, 255, 255);
+}
+.about-text, .about-image {
+  box-sizing: border-box;
+  padding: 20px;
+}
+.about-text p {
+  font-size: 1rem;
+  text-align: justify;
+  line-height: 1.6;
+  color: #333; /* Dark Gray */
+}
+.about-image img {
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+.about-image img:hover {
+  transform: scale(1.1);
+}
+.social-media-container {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  text-align: right;
+  z-index: 900;
+}
+.social-media-text {
+  font-size: 1.25rem;
+  color: #ffffff; /* White */
+  margin-bottom: 10px;
+}
+.social-media a {
+  display: inline-flex;
+  margin-left: 20px;
+  transition: transform 0.3s ease;
+}
+.social-media a:hover {
+  transform: scale(1.2);
+}
+.social-media img {
+  width: 1rem;
+  height: 1rem;
+  filter: brightness(0) invert(1);
+}
+.copyright-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f7eded;
+  padding: 0.5px;
+  font-size: 0.475rem;
+  text-align: center;
+  color: #000000;
+  z-index: 999;
+  display: none;
+}
+.blog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px;
+}
+.blog-box {
+  flex-basis: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #ffffff; /* White */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.blog-box a {
+  text-decoration: none;
+  color: #333; /* Dark Gray */
+  display: block;
+  padding: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  border-radius: 10px;
+}
+.blog-box a:hover {
+  background-color: #f9f9f9;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.blog-box img {
+  max-width: 100%;
+  height: auto;
+}
+.contact-section {
+  text-align: center;
+  margin: 20px 0;
+}
+.contact-heading {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #4d6a61; /* Grayish Green */
+}
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.contact-form, .contact-details {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  background-color: #ffffff; /* White */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  transition: border 0.3s ease;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  border: 1px solid #4d6a61; /* Grayish Green */
+}
+.contact-form button {
+  background-color: #4d6a61; /* Grayish Green */
+  color: #ffffff; /* White */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.contact-form button:hover {
+  background-color: #5c8b7b; /* Grayed Jade */
+  transform: scale(1.1);
+}
+.contact-details p {
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.gallery-container {
+  text-align: center;
+  padding: 20px;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.gallery img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.gallery img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+@media (min-width: 768px) {
+.about-content {
+display: flex;
+flex-wrap: wrap;
+}
+.about-text, .about-image {
+width: 50%;
+}
+.blog-box {
+flex-basis: 45%;
+}
+}
+@media (min-width: 1024px) {
+nav ul {
+justify-content: space-between;
+}
+.blog-box {
+flex-basis: 30%;
+}
+}
+</style>
+</head>
+
+<body>
+  <div class="header-container">
+    <header>
+      <h1>PRADIP KHATIWADA</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#cv">Curriculum Vitae</a></li>
+        <li><a href="#blog">Work of Writings</a></li>
+        <li><a href="#photography">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="social-media-container" id="social-media-container">
+      <div class="social-media-text"><b><i></i></b></div>
+      <div class="social-media">
+        <a href="https://www.facebook.com/pradipkhatiwadaa/" target="_blank"><img src="facebook.png" alt="Facebook"></a>
+        <a href="https://www.instagram.com/pradipkhatiwada_/" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+        <a href="https://x.com/kopite_nepali" target="_blank"><img src="twitter.png" alt="Twitter"></a>
+        <a href="https://www.linkedin.com/in/pradipkhatiwada/" target="_blank"><img src="linkedin.png" alt="LinkedIn"></a>
+      </div>
+    </div>
+  </div>
+  <main>
+    <section id="about" class="tab">
+      <div class="about-content">
+        <div class="about-text">
+          <p>I am a dedicated program management professional with over five years of experience in driving impactful initiatives across peace-building, human rights advocacy, and community development sectors. Within these roles, I've honed my skills in project leadership, strategic planning, stakeholder engagement, and capacity building, while also fostering effective communication within diverse teams and communities.</p>
+          <p>Beyond my professional endeavors, I find immense fulfillment in my personal pursuits. As a district-level table tennis player in Nepal, I immerse myself in the dynamic world of sports, finding joy and challenge in every match. Alongside table tennis, I'm an avid enthusiast of cricket and football, both as a player and a spectator. These sports not only offer moments of exhilaration and camaraderie but also serve as platforms for building connections and fostering a sense of community.</p>
+          <p>In addition to my passion for sports, I'm an ardent movie buff who appreciates the art of storytelling and the profound impact it can have on individuals and societies. Whether it's through thought-provoking narratives or captivating visual spectacles, cinema has the power to inspire, educate, and ignite conversations on a myriad of topics. As I delve into the world of film, I continuously seek out works that challenge my perspectives and broaden my horizons.</p>
+          <p>Outside of sports and entertainment, I nurture a deep curiosity for the natural world and the cosmos. Exploring the mysteries of the universe and understanding the intricate workings of nature fascinate me. This curiosity drives me to engage with scientific literature, documentaries, and discussions that shed light on the wonders of our world.</p>
+          <p>In essence, my journey is one of continuous growth, both professionally and personally. With a blend of dedication, enthusiasm, and a thirst for knowledge, I strive to contribute meaningfully to the causes I believe in while continuously seeking growth, connection, and inspiration.</p>
+          <p>Thank you for visiting my website. I invite you to explore further and join me on this journey of discovery and meaningful engagement. Reach out to me at pradipkhatiwadaa [at] gmail.com to discuss potential collaborations or opportunities.</p>
+        </div>
+        <div class="about-image">
+          <img src="pradip.jpg" alt="Pradip Khatiwada">
+        </div>
+      </div>
+    </section>
+    <section id="cv" class="tab cv-section">
+      <h2 style="text-align: center;"><b>Curriculum Vitae</b></h2>
+      <p style="text-align: center;"><i>To view the full CV, click the thumbnail below:</i></p>
+      <div class="blog-grid">
+        <div class="blog-box">
+          <a href="Pradip_Khatiwada_CV.pdf" download>
+            <img src="cv_thumbnail.jpg" alt="Curriculum Vitae Thumbnail">
+            <p><b>Download CV</b></p>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section id="blog" class="tab">
+      <h2 style="text-align: center;"><b>Writings - Pradip Khatiwada</b></h2>
+      <p style="text-align: center;"><i>To view the full writing, click the thumbnail below:</i></p>
+      <div class="blog-grid">
+        <div class="blog-box">
+          <a href="https://kppradip.wordpress.com/2018/03/11/the-journey-begins/">
+            <img src="SXC.png" alt="Young, Wild तर Xavierian">
+            <p><b>Young, Wild तर Xavierian</b></p>
+          </a>
+        </div>
+        <div class="blog-box">
+          <a href="Dissertation Paper.pdf">
+            <img src="Thesis.jpg" alt="Dissertation Paper - Master of Arts">
+            <p><b>Dissertation Paper - Master of Arts</b></p>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+      <div class="gallery-container">
+        <section id="photography" class="tab">
+        <h2 style="text-align: center;">Gallery</h2>
+        <p style="text-align: center;"><i>To view the full image, click the thumbnail below:</i></p>
+        <div class="gallery">
+        <!-- Example of 70 images -->
+        <img id="img1" src="Images/image (1).jpg" alt="Photography 1" title="Life-Cycle of an Average Nepali">
+        <img id="img53" src="Images/image (53).jpg" alt="Photography 3" title=" Entangled">
+        <img id="img2" src="Images/image (2).jpg" alt="Photography 2" title="Journey with a destructor">
+        <img id="img3" src="Images/image (3).jpg" alt="Photography 3" title="Two Shades of a Nepali Women - Traditional and Modern">
+        <img id="img4" src="Images/image (4).jpg" alt="Photography 1" title="When hand speaks">
+        <img id="img5" src="Images/image (5).jpg" alt="Photography 2" title="Beauty of Bardiya - 1">
+        <img id="img6" src="Images/image (6).jpg" alt="Photography 3" title="Beauty of Bardiya - 2">
+        <img id="img7" src="Images/image (7).jpg" alt="Photography 2" title="Beauty of Bardiya - 3">
+        <img id="img8" src="Images/image (8).jpg" alt="Photography 3" title="Cigarette Session - 1">
+        <img id="img9" src="Images/image (9).jpg" alt="Photography 1" title="Cigarette Session - 2">
+        <img id="img10" src="Images/image (10).jpg" alt="Photography 2" title="Cigarette Session - 3">
+        <img id="img50" src="Images/image (50).jpg" alt="Photography 2" title=" Cigarette Session - 4">
+        <img id="img11" src="Images/image (11).jpg" alt="Photography 3" title="Rain in the City">
+        <img id="img12" src="Images/image (12).jpg" alt="Photography 1" title="Moment of Realization">
+        <img id="img13" src="Images/image (13).jpg" alt="Photography 2" title="Furniture (Dowry) in the making">
+        <img id="img14" src="Images/image (14).jpg" alt="Photography 3" title="Little Cracks never killed nobody">
+        <img id="img15" src="Images/image (15).jpg" alt="Photography 1" title="The Lost Feminist">
+        <img id="img16" src="Images/image (16).jpg" alt="Photography 2" title="She give you life, love and care">
+        <img id="img17" src="Images/image (17).jpg" alt="Photography 3" title=" She teach you to dream, jump and fly">
+        <img id="img18" src="Images/image (18).jpg" alt="Photography 1" title="And then you fly, she is alone now">
+        <img id="img19" src="Images/image (19).jpg" alt="Photography 2" title="हजारौं बर्ष देखि क्षितिज भरिका निलोपन र सौन्दर्य हाम्रो शरीरलाई रंगिन बनाउन निरन्तर लागिरहे तर अब भने रित्तिएर आफै रंगहीन भएका छन्।">
+        <img id="img20" src="Images/image (20).jpg" alt="Photography 3" title="हजारौं बर्ष देखि क्षितिज भरिका निलोपन र सौन्दर्य हाम्रो शरीरलाई रंगिन बनाउन निरन्तर लागिरहे तर अब भने रित्तिएर आफै रंगहीन भएका छन्।">
+        <img id="img21" src="Images/image (21).jpg" alt="Photography 1" title=" The Palace in Isolation
+
+एउटा सुनसान गल्लीमा हराएको वृद्ध बा जस्तै छ यो रानीमहल। बा शहरको concrete जंगलमा हराएका छन, महल भने हरियो घना जंगलको खोचंमा। बुढा बा-लाई मृत्युले पर्खे जस्तै कालीगण्डकीको बाढीले महललाई संगै लैजान दशकौं देखि पर्खिदैं बगेजस्तो देखिन्छ।रानीको सम्झनामा खड्ग शम्सेरले ताजमहल स्वरुप बनाउन लागएको यो महल, कुनै high hopes नराखी एक पटक पुग्नु पर्ने गन्तव्य हो। पाल्पाको सदरमुकाम तानसेन बजारबाट मात्र १३ km को दूरीमा, उत्तरतर्फ बग्ने कालीगण्डकीको तिरमा अवस्थित छ रानीमहल।">
+        <img id="img22" src="Images/image (22).jpg" alt="Photography 2" title="The Palace in Isolation
+        
+एउटा सुनसान गल्लीमा हराएको वृद्ध बा जस्तै छ यो रानीमहल। बा शहरको concrete जंगलमा हराएका छन, महल भने हरियो घना जंगलको खोचंमा। बुढा बा-लाई मृत्युले पर्खे जस्तै कालीगण्डकीको बाढीले महललाई संगै लैजान दशकौं देखि पर्खिदैं बगेजस्तो देखिन्छ।रानीको सम्झनामा खड्ग शम्सेरले ताजमहल स्वरुप बनाउन लागएको यो महल, कुनै high hopes नराखी एक पटक पुग्नु पर्ने गन्तव्य हो। पाल्पाको सदरमुकाम तानसेन बजारबाट मात्र १३ km को दूरीमा, उत्तरतर्फ बग्ने कालीगण्डकीको तिरमा अवस्थित छ रानीमहल।">
+        <img id="img23" src="Images/image (23).jpg" alt="Photography 3" title="The Palace in Isolation
+        
+एउटा सुनसान गल्लीमा हराएको वृद्ध बा जस्तै छ यो रानीमहल। बा शहरको concrete जंगलमा हराएका छन, महल भने हरियो घना जंगलको खोचंमा। बुढा बा-लाई मृत्युले पर्खे जस्तै कालीगण्डकीको बाढीले महललाई संगै लैजान दशकौं देखि पर्खिदैं बगेजस्तो देखिन्छ।रानीको सम्झनामा खड्ग शम्सेरले ताजमहल स्वरुप बनाउन लागएको यो महल, कुनै high hopes नराखी एक पटक पुग्नु पर्ने गन्तव्य हो। पाल्पाको सदरमुकाम तानसेन बजारबाट मात्र १३ km को दूरीमा, उत्तरतर्फ बग्ने कालीगण्डकीको तिरमा अवस्थित छ रानीमहल।">
+        <img id="img24" src="Images/image (24).jpg" alt="Photography 1" title="गुल्मीका गाथाहरु
+
+सदरमुकाम छाडेर अलि मास्तिरको पातलो बस्तीको दृश्य कुनै खाली सिनेमा हलको environment भन्दा कम छैन। गाउँमा धेरै वर्ष लागेर सडकहरु के पुगेका थिए, गाउँलेहरु त्यही बाटो हुँदै सहर पस्न थाले, गाउँ रित्तो पारेर। अब शुन्य छ गाउँ । छ त केवल, छोरा पर्खिदै बसेको ८० बर्ष लागेका बुढा चाउरी बा-को सपना मात्र । माइला बा-को छोरो खाडी पसेको गत साता ९ वर्ष लागेछ, बुहारी हरेक साझँ रुन्छिन । कान्छा, बाबा कता हुनुहुन्छ भनेर हरेक रात आमालाई प्रश्न गर्छ, आमा फेरी अर्को एउटा झुटो आशा देखाउछिन कान्छालाई । येस्तै झुटा आशाहरु मात्र बाकीँ छन् गाउँघरमा । युवाहरुको उपस्थिति एकदमै न्यून मात्रामा देखिन्छ।
+        ">
+        <img id="img25" src="Images/image (25).jpg" alt="Photography 2" title="रामजानकी मन्दिर, इश्मा,गुल्मी
+
+झट्ट हेर्दा जाबो एउटा बुढो हुँदै गएको थोत्रो प्रवेशद्वा्र मात्र हुन् यी ढोकाहरु । तर यी ढोकाहरु त्यति मात्र चैँ पक्कै होइनन्। गुल्मी जिल्लाको सामाजिक र संस्कृतिक इतिहास अटाएका छन् यो ढोकाहरुको कृतीमा । घामपानी नभनी सयौं वर्षदेखि रच्दै आएका छन् नेपालको संस्कृतिक बर्णन। त्यहि तलबाट दिनदिनै अलिबढी धमिलो भएर गुल्मी छोडी बग्ने रिडी खोलाझैँ, उद्दार र संरक्षणको अभावले गर्दा यी धरोहरहरुको पनि पहिचान र मौलिकता धमिलिदैँ गएको छ ।
+        ">
+        <img id="img26" src="Images/image (26).jpg" alt="Photography 3" title="रुरुक्षेत्र, रिडी, गुल्मी
+
+झट्ट हेर्दा जाबो एउटा बुढो हुँदै गएको थोत्रो प्रवेशद्वा्र मात्र हुन् यी ढोकाहरु । तर यी ढोकाहरु त्यति मात्र चैँ पक्कै होइनन्। गुल्मी जिल्लाको सामाजिक र संस्कृतिक इतिहास अटाएका छन् यो ढोकाहरुको कृतीमा । घामपानी नभनी सयौं वर्षदेखि रच्दै आएका छन् नेपालको संस्कृतिक बर्णन। त्यहि तलबाट दिनदिनै अलिबढी धमिलो भएर गुल्मी छोडी बग्ने रिडी खोलाझैँ, उद्दार र संरक्षणको अभावले गर्दा यी धरोहरहरुको पनि पहिचान र मौलिकता धमिलिदैँ गएको छ ।
+        ">
+        <img id="img27" src="Images/image (27).jpg" alt="Photography 1" title="The Majestic Rara">
+        <img id="img28" src="Images/image (28).jpg" alt="Photography 2" title="Post-Earhquake Lifestyle">
+        <img id="img29" src="Images/image (29).jpg" alt="Photography 3" title="Dirty Pleasure">
+        <img id="img30" src="Images/image (30).jpg" alt="Photography 1" title="Terai Cycle Session - 1">
+        <img id="img32" src="Images/image (32).jpg" alt="Photography 3" title="Terai Cycle Session - 2">
+        <img id="img33" src="Images/image (33).jpg" alt="Photography 1" title="Terai Cycle Session - 3"> 
+        <img id="img48" src="Images/image (48).jpg" alt="Photography 3" title="Terai Cycle Session - 4">
+        <img id="img31" src="Images/image (31).jpg" alt="Photography 2" title=" No Country for a Migrant Workers
+
+मलाई मतलब छैन तिमी कुन पार्टीको मान्छे हौ , कुन राजनीतिक सिद्धान्तलाई आत्मसाथ गरेका गर्छौ। मलाई यो पनि मतलब छैन कि तिमी मार्क्सलाई मान्छौ कि माओलाई, गान्धीलाई पुज्छौ कि लुथर किङलाई, तिम्रो अभिभावक हिटलर हो कि मुसोलिनी। मलाई यति मात्र मतलब छ कि जबसम्म तिमीले यस्ता दैनिक ज्याला मजदुरी गर्ने गरिब (not सर्वहारा) जनतालाई काम गर्ने वातावरण प्रदान गर्न सक्दैनौ र संकटको समयमा उनीहरुको आड भरोसा बन्न सक्दैनौं भने i resist and refuse to accept you as my legitimate government. बरु फर्केर जाउ फेरी त्यही जङ्गलमा जहाँ तिमीले mindwash का कक्षाहरु संचालन गरेका थियौ, जाउ फर्केर त्यही कारागारमा ( अनि यस पाली १४ वर्ष मात्र होइन, जीवनको अन्तिम सास रहुन्जेल सम्म त्यही बस) अनि पढ फेरी अर्को नयाँ पुस्तक - हाउ टु फक अफ यर्‍र कन्ट्री थ्रु नेस्नलिस्ट पोलिटिक्स। ">        
+        <img id="img34" src="Images/image (34).jpg" alt="Photography 2" title="The dark side we hide">
+        <img id="img35" src="Images/image (35).jpg" alt="Photography 3" title="The Terai Muse">
+        <img id="img36" src="Images/image (36).jpg" alt="Photography 1" title="Smoking Kills">
+        <img id="img37" src="Images/image (37).jpg" alt="Photography 2" title="Bouddha Chronicle - 1">
+        <img id="img38" src="Images/image (38).jpg" alt="Photography 3" title="Boudhha Chronicle - 2">
+        <img id="img40" src="Images/image (40).jpg" alt="Photography 2" title="One flew over a pigeon nest">
+        <img id="img39" src="Images/image (39).jpg" alt="Photography 1" title="Chepang Diaries - 1">
+        <img id="img41" src="Images/image (41).jpg" alt="Photography 3" title="Chepang Diaries - 2">
+        <img id="img42" src="Images/image (42).jpg" alt="Photography 3" title="Chepang Diaries - 3">
+        <img id="img43" src="Images/image (43).jpg" alt="Photography 1" title="Chepang Diaries - 4">
+        <img id="img44" src="Images/image (44).jpg" alt="Photography 2" title="Chepang Diaries - 5">
+        <img id="img45" src="Images/image (45).jpg" alt="Photography 3" title="Chepang Diaries - 6">
+        <img id="img46" src="Images/image (46).jpg" alt="Photography 1" title="Beauty and the Beast">
+        <img id="img47" src="Images/image (47).jpg" alt="Photography 2" title="Photographic Memory from Rainaskot, Lamjung">
+        <img id="img49" src="Images/image (49).jpg" alt="Photography 1" title="Landscape of Lamjung">
+        <img id="img51" src="Images/image (51).jpg" alt="Photography 3" title="In the midst of Chitwan National Park">
+        <img id="img52" src="Images/image (52).jpg" alt="Photography 2" title="गन्तव्य एक, यात्रा अनेक">
+        <img id="img54" src="Images/Image (54).jpg" alt="Photography 1" title="Life Under Construction">
+        <img id="img55" src="Images/Image (55).webp" alt="Photography 2" title="Pokhara International Airport">
+        <img id="img57" src="Images/Image (57).webp" alt="Photography 1" title="Four Narayans of Kathmandu Valley - Changunarayan-1">
+        <img id="img58" src="Images/Image (58).webp" alt="Photography 2" title="Four Narayans of Kathmandu Valley - Changunarayan-2">
+        <img id="img56" src="Images/Image (56).webp" alt="Photography 3" title="Four Narayans of Kathmandu Valley - Changunarayan-3">
+        <img id="img59" src="Images/Image (59).webp" alt="Photography 3" title="धर्मका कुराहरु!">
+        <img id="img60" src="Images/Image (60).webp" alt="Photography 3" title="Pitri Paksha - Remembering the ancestors">
+        <img id="img61" src="Images/Image (61).webp" alt="Photography 1" title="Linesman - sporting duties">
+        <img id="img62" src="Images/Image (62).webp" alt="Photography 2" title="Best Friend">
+        <img id="img63" src="Images/Image (63).webp" alt="Photography 2" title="The local tea joint">
+      </section>
+      </div>
+    
+    
+      <section id="contact" class="tab">
+        <div class="contact-section">
+          <h2 class="contact-heading">Contact</h2>
+          <p>Feel free to get in touch with me by filling out the form below:</p>
+          <div class="contact-container">
+            <div class="contact-form">
+              <form action="contact.php" method="POST">
+                <input type="text" name="full_name" placeholder="Full Name">
+                <input type="text" name="address" placeholder="Address">
+                <input type="email" name="email" placeholder="Email">
+                <input type="number" name="phone" placeholder="Phone Number">
+                <textarea name="message" placeholder="Write your queries, message or complaints"></textarea>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+  <div class="copyright-container" id="copyright-container">
+    <p>Copyright © 2024, Pradip Khatiwada, All Rights Reserved</p>
+  </div>
+  <script>
+    function scrollToSection() {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetSection = document.querySelector(hash);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+      const tabs = document.querySelectorAll(".tab");
+      tabs[0].style.display = "block";
+
+      const navLinks = document.querySelectorAll("nav a");
+      navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+          event.preventDefault();
+          const targetId = this.getAttribute("href").substring(1);
+          tabs.forEach(tab => {
+            if (tab.id === targetId) {
+              tab.style.display = "block";
+            } else {
+              tab.style.display = "none";
+            }
+          });
+        });
+      });
+
+      window.addEventListener('scroll', function() {
+        const copyrightContainer = document.getElementById('copyright-container');
+        const scrollPosition = window.scrollY + window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+
+        if (scrollPosition >= documentHeight) {
+          copyrightContainer.style.display = 'block';
+        } else {
+          copyrightContainer.style.display = 'none';
+        }
+      });
+
+      const galleryImages = document.querySelectorAll(".gallery img");
+      galleryImages.forEach(function(image) {
+        image.addEventListener("click", function() {
+          const imageUrl = this.src;
+          window.open(imageUrl, '_blank');
+        });
+      });
+
+      // Scroll to the current section based on the URL hash
+      scrollToSection();
+    });
+
+    // Handle hash change event
+    window.addEventListener('hashchange', scrollToSection);
+  </script>
+</body>
+</html>
