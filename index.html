@@ -429,12 +429,12 @@ flex-basis: 30%;
           <p>Feel free to get in touch with me by filling out the form below:</p>
           <div class="contact-container">
             <div class="contact-form">
-              <form action="contact.php" method="POST">
-                <input type="text" name="full_name" placeholder="Full Name">
+              <form action="https://formspree.io/f/xkgwjljl" method="POST">
+                <input type="text" name="full_name" placeholder="Full Name" required>
                 <input type="text" name="address" placeholder="Address">
-                <input type="email" name="email" placeholder="Email">
-                <input type="number" name="phone" placeholder="Phone Number">
-                <textarea name="message" placeholder="Write your queries, message or complaints"></textarea>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="phone" placeholder="Phone Number">
+                <textarea name="message" placeholder="Write your queries, message or complaints" required></textarea>
                 <button type="submit">Submit</button>
               </form>
             </div>
